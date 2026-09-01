@@ -1,0 +1,21 @@
+
+create .env.local at root - fill this out
+
+# Sanity (server-side)
+SANITY_PROJECT_ID=
+# Sanity (public)
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_STUDIO_URL=http://localhost:3333
+# prod: https://your-project-name.sanity.studio
+
+# Sanity tokens
+# Editor permissions — for form submissions
+SANITY_API_TOKEN=
+
+# Email
+RESEND_API_KEY=
+CLIENT_EMAIL=
+
+# Site
+NEXT_PUBLIC_SITE_URL=

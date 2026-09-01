@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--nav-h: 10svh;
+
+	/* Default: hero clears the nav automatically. Override this one line
+	   per client if a project wants a different gap — e.g. 6svh, 3rem,
+	   or 0 for full overlap behind the nav. */
+	/* --hero-pt: var(--nav-h); */
+	--hero-pt: 2rem;
+
+	/* Per-project: pick which config color drives typography.
+	   Swap these two lines and every heading/utility below updates.
+	   For this client: dark = Classic Navy (#132E41) — matches the guide's
+	   heading/body text color. secondary = Gold (#EABC66). */
+	--heading-color: theme('colors.dark');
+	--accent-color: theme('colors.secondary');
+}
+
+main > *:first-child {
+	padding-top: var(--hero-pt);
+}
+
+html {
+	@apply scroll-smooth;
+}
+
+body {
+	@apply bg-light font-default;
+	@apply antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* :focus-visible only fires for keyboard/programmatic focus, not mouse
+   clicks — so this doesn't ring every button on click, only when someone's
+   actually tabbing through the page. */
+:focus-visible {
+	outline: 2px solid theme('colors.primary');
+	outline-offset: 2px;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+.no-scroll {
+	overflow: hidden !important;
+	height: 100% !important;
+}
+
+.section-x-padding {
+	@apply px-[1.125rem] sm:px-1.25 md:px-2.5 lg:px-6.25 3xl:max-w-[130rem] 3xl:mx-auto;
+}
+
+@layer base {
+	/* font-weight and letter-spacing moved out of this shared block and into
+	   each h1-h6 rule below — the guide varies both by level (600 vs 500
+	   weight, a different letter-spacing per size), so the starter's single
+	   shared value (600 / -0.025em) can't represent it. Everything that IS
+	   uniform across levels stays here. */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		color: var(--heading-color);
+		font-family: var(--font-heading);
+
+		orphans: 2;
+		widows: 2;
+		word-break: normal;
+		overflow-wrap: break-word;
+		text-wrap: pretty;
+	}
+
+	h1 {
+		font-size: clamp(3.25rem, 6vw, 4.5rem); /* guide max 4.5rem */
+		font-weight: 600;
+		line-height: 1.05; /* 105% */
+		letter-spacing: 0.009rem; /* guide */
+		text-transform: uppercase;
+	}
+
+	h2 {
+		font-size: clamp(2.5rem, 5vw, 3.5rem); /* guide max 3.5rem */
+		font-weight: 600;
+		line-height: 1.05; /* 105% */
+		letter-spacing: 0.007rem; /* guide */
+		text-transform: uppercase;
+	}
+
+	h3 {
+		font-size: clamp(1.875rem, 4.5vw, 2.75rem); /* guide max 2.75rem */
+		font-weight: 600;
+		line-height: 1.05; /* 105% */
+		letter-spacing: 0.0055rem; /* guide */
+		text-transform: uppercase;
+	}
+
+	h4 {
+		font-size: clamp(1.625rem, 4vw, 2.25rem); /* guide max 2.25rem */
+		font-weight: 600;
+		line-height: 1.05; /* 105% */
+		letter-spacing: 0.0045rem; /* guide */
+		text-transform: uppercase;
+	}
+
+	h5 {
+		font-size: clamp(1.5rem, 3vw, 1.75rem); /* guide max 1.75rem */
+		font-weight: 500;
+		line-height: 1.05; /* 105% */
+		letter-spacing: 0.00525rem; /* guide */
+		text-transform: uppercase;
+	}
+
+	h6 {
+		/* Guide image was cut off before letter-spacing/text-transform —
+		   sample text reads "Sentence case" (not all-caps), so text-transform
+		   is left off here. letter-spacing not specified; defaulted to
+		   normal. Confirm both against the source guide. */
+		font-size: clamp(1.4rem, 2.5vw, 1.75rem); /* guide max 1.75rem */
+		font-weight: 500;
+		line-height: 1.1; /* 110% */
+		letter-spacing: normal; /* not specified in guide — confirm */
+	}
+}
+
+@layer components {
+
+
+
+
+	/* Guide "Paragraph Large". */
+	.text-paragraph-lg {
+		color: var(--heading-color);
+		font-family: var(--font-body);
+		font-size: clamp(1.35rem, 1.8vw, 1.5rem); /* guide 1.5rem */
+		font-weight: 400;
+		line-height: 1.2; /* 120% */
+		letter-spacing: normal; /* not specified in guide — confirm */
+	}
+
+	/* Guide "Paragraph Default" — base body. */
+	.text-paragraph {
+		color: var(--heading-color);
+		font-family: var(--font-body);
+		font-size: clamp(1rem, 1.4vw, 1.25rem); /* guide 1.25rem */
+		font-weight: 400;
+		line-height: 1.4; /* 140% */
+		letter-spacing: -0.00125rem; /* guide */
+	}
+
+	/* Guide "Paragraph Small". */
+	.text-paragraph-sm {
+		color: var(--heading-color);
+		font-family: var(--font-body);
+		font-size: clamp(0.9rem, 1vw, 1rem); /* guide 1rem */
+		font-weight: 400;
+		line-height: 1.4; /* 140% */
+		letter-spacing: normal; /* not specified in guide — confirm */
+	}
+
+	/* Guide "Caption" — kept distinct from Paragraph Small; the guide lists
+	   them as two separate styles, not one collapsed size. */
+	.text-caption {
+		color: var(--heading-color);
+		font-family: var(--font-body);
+		font-size: clamp(0.8rem, 0.9vw, 0.875rem); /* guide 0.875rem */
+		font-weight: 400;
+		line-height: 1.4; /* 140% */
+		letter-spacing: normal; /* not specified in guide — confirm */
+	}
+
+	/* Guide "Button & link text" — guide specifies Jost (heading face), not
+	   the body face, so this deviates from the usual body-font default. */
+	.text-button {
+		color: var(--heading-color);
+		font-family: var(--font-heading);
+		font-size: clamp(0.9rem, 1vw, 1rem); /* guide 1rem */
+		font-weight: 500;
+		line-height: 1.1; /* 110% */
+		letter-spacing: 0.006rem; /* guide */
+		text-transform: uppercase;
+	}
+}
