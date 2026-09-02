@@ -40,7 +40,7 @@ const VARIANTS = {
 	'primary-on-dark': 'bg-secondary text-primary border border-secondary hover:bg-primary hover:text-secondary',
 	// SECONDARY
 	'secondary-on-light': 'bg-light text-primary border border-dark t hover:text-accent hover:border-accent',
-	'secondary-on-dark': 'bg-primary text-secondary border border-secondary hover:border-light hover:text-light',
+	'secondary-on-dark': 'bg-primary/0 text-secondary border border-secondary hover:border-light hover:text-light',
 	// TERTIARY (group + gap added so the arrow can react to hover and sit off the label)
 	'tertiary-on-light': 'group gap-0.5 text-primary hover:text-accent',
 	'tertiary-on-dark': 'group gap-0.5 text-secondary hover:text-light',

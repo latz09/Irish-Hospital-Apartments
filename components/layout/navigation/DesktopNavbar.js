@@ -17,7 +17,7 @@ const DesktopNavbar = ({ navLinks, logoUrl, navBg = 'bg-primary/0' }) => {
 
 	return (
 		<div
-			className={`hidden h-full lg:flex items-center backdrop-blur-lg w-full transition-colors duration-500 ${navBg}`}
+			className={`hidden h-full lg:flex items-center  w-full transition-colors duration-500 ${navBg}`}
 		>
 			<div className='flex items-center w-full section-x-padding '>
 				<Logo className='w-[12.12rem]' variant={isDark ? 'secondary' : 'secondary'} url={logoUrl} />

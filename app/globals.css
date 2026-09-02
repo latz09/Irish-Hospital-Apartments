@@ -9,7 +9,7 @@
 	   per client if a project wants a different gap — e.g. 6svh, 3rem,
 	   or 0 for full overlap behind the nav. */
 	/* --hero-pt: var(--nav-h); */
-	--hero-pt: 2rem;
+	--hero-pt: 0rem;
 
 	/* Per-project: pick which config color drives typography.
 	   Swap these two lines and every heading/utility below updates.

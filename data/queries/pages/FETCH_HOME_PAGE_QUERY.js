@@ -20,13 +20,13 @@ export const FETCH_HOME_PAGE_QUERY = `*[_type == "homePage" && _id == "homePage"
   about{
     heading,
     historyHeading,
-    historyText,
+    historyParagraphs,
     carouselImages[]{
       asset->{url},
       hotspot
     },
     renovationHeading,
-    renovationText
+    renovationParagraphs
   },
   amenities{
     heading,
@@ -81,9 +81,12 @@ export const FETCH_HOME_PAGE_QUERY = `*[_type == "homePage" && _id == "homePage"
   photoGallery{
     heading,
     subheading,
-    intro,
+    introParagraphs,
     images[]{
-      asset->{url},
+      asset->{
+        url,
+        metadata{ dimensions{ aspectRatio } }
+      },
       hotspot
     }
   },
@@ -106,4 +109,4 @@ export const FETCH_HOME_PAGE_QUERY = `*[_type == "homePage" && _id == "homePage"
     "ogImage": ogImage.asset->url,
     noIndex
   }
-}`
+}`;

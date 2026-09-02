@@ -3,9 +3,6 @@ import { buildPageMetadata as BPM } from '@/utils/seo/buildPageMetadata';
 import { FETCH_HOME_PAGE_QUERY as Q } from '@/data/queries/pages/FETCH_HOME_PAGE_QUERY';
 
 import PageContainer from '@/components/animations/PageContainer';
-import SanitySetup from '@/data/set-up/SanitySetup';
-import SEOSetup from '@/data/set-up/SEOSetup';
-import ProjectChecklist from '@/components/design/ProjectChecklist';
 import Hero from '@/components/sections/home-page/Hero';
 import About from '@/components/sections/home-page/About';
 import Amenities from '@/components/sections/home-page/Amenities';
