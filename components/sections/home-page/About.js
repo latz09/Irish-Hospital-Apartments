@@ -19,7 +19,7 @@ const About = ({ data }) => {
 	} = data ? data : {};
 
 	return (
-		<div className='overflow-x-hidden bg-primary'>
+		<div id='about' className='overflow-x-hidden bg-primary scroll-target'>
 			<Section py='py-6.25 lg:py-8' className='space-y-4 bg-primary'>
 				<SectionHeading heading={heading} />
 				<HeadingWithDescription

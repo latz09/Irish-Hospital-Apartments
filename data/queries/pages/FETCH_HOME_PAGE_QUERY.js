@@ -83,24 +83,9 @@ export const FETCH_HOME_PAGE_QUERY = `*[_type == "homePage" && _id == "homePage"
     subheading,
     introParagraphs,
     images[]{
-      asset->{
-        url,
-        metadata{ dimensions{ aspectRatio } }
-      },
+      asset->{url},
       hotspot
     }
-  },
-  contact{
-    heading,
-    intro,
-    successMessage
-  },
-  footer{
-    phone,
-    email,
-    addressLine1,
-    addressLine2,
-    copyrightText
   },
   seo{
     title,
@@ -109,4 +94,4 @@ export const FETCH_HOME_PAGE_QUERY = `*[_type == "homePage" && _id == "homePage"
     "ogImage": ogImage.asset->url,
     noIndex
   }
-}`;
+}`

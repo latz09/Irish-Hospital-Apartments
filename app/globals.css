@@ -17,6 +17,11 @@
 	   heading/body text color. secondary = Gold (#EABC66). */
 	--heading-color: theme('colors.dark');
 	--accent-color: theme('colors.secondary');
+	/* Scroll offset for single-page nav anchors — how far below the
+	   viewport top an id'd section should land when scrolled to, so it
+	   doesn't sit flush under the fixed/sticky nav. Change this ONE value
+	   to adjust every anchor section at once. */
+	--scroll-offset: 0.5rem;
 }
 
 main > *:first-child {
@@ -134,10 +139,6 @@ body {
 }
 
 @layer components {
-
-
-
-
 	/* Guide "Paragraph Large". */
 	.text-paragraph-lg {
 		color: var(--heading-color);
@@ -189,5 +190,8 @@ body {
 		line-height: 1.1; /* 110% */
 		letter-spacing: 0.006rem; /* guide */
 		text-transform: uppercase;
+	}
+	.scroll-target {
+		scroll-margin-top: var(--scroll-offset);
 	}
 }

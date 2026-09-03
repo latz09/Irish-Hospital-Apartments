@@ -10,7 +10,7 @@ const Footer = async ({ businessName }) => {
 	const { phone, email, address } = seo ? seo : {};
 
 	return (
-		<footer>
+		<footer id='footer' className='scroll-target'>
 			<Section
 				as='div'
 				py='py-5'

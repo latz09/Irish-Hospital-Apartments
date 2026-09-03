@@ -6,7 +6,7 @@ const Amenities = ({ data }) => {
 	const { heading, intro, items, image } = data ? data : {};
 
 	return (
-		<div className='bg-primary'>
+		<div id='amenities' className='bg-primary scroll-target'>
 			<Section py='pb-6.25 lg:pb-8' className='bg-primary'>
 				<div className='rounded border border-secondary p-[0.55rem]'>
 					<div className='space-y-2.5 rounded-[0.5rem] border border-secondary p-1 md:p-2 lg:space-y-4 lg:p-4'>

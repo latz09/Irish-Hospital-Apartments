@@ -7,17 +7,23 @@ const ResidentServices = ({ data }) => {
 	const { heading, cards } = data ? data : {};
 
 	return (
-		<Section className='relative space-y-2.5 overflow-hidden lg:space-y-4' py='py-5.75 lg:py-8.75'>
-			{/* <div className='pointer-events-none absolute left-0 top-0 w-[10rem] lg:w-[15rem]'>
+		<div id='resident-services' className='-scroll-mt-3'>
+			<Section
+				
+				className='relative space-y-2.5 overflow-hidden lg:space-y-4 '
+				py='py-5.75 lg:py-8.75'
+			>
+				{/* <div className='pointer-events-none absolute left-0 top-0 w-[10rem] lg:w-[15rem]'>
 				<CornerPattern />
 			</div>
 			<div className='pointer-events-none absolute right-0 top-0 w-[10rem] lg:w-[15rem]'>
 				<CornerPattern flip />
 			</div> */}
 
-			<h2 className='text-center'>{heading}</h2>
-			<ServiceCards cards={cards} />
-		</Section>
+				<h2 className='text-center'>{heading}</h2>
+				<ServiceCards cards={cards} />
+			</Section>
+		</div>
 	);
 };
 

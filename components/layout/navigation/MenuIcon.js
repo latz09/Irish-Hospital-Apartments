@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 // `controls` should be the id of the panel this button opens/closes —
 // pairs the trigger to the panel for assistive tech (aria-controls).
 const MenuIcon = ({ toggleNav, isNavOpen, variant = 'dark', controls }) => {
-	const lineColor = variant === 'light' ? 'bg-light' : 'bg-dark';
+	const lineColor = variant !== 'light' ? 'bg-light' : 'bg-dark';
 
 	return (
 		<button
@@ -21,19 +21,19 @@ const MenuIcon = ({ toggleNav, isNavOpen, variant = 'dark', controls }) => {
 				whileHover={{ scale: 1.1 }}
 				whileTap={{ scale: 0.9 }}
 			>
-				<div className='flex flex-col space-y-0.25'>
+				<div className='flex flex-col space-y-[0.4rem]'>
 					<span
-						className={`block w-2 h-0.25 ${lineColor} transition-all duration-300 origin-center ${
+						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 origin-center ${
 							isNavOpen ? 'rotate-45 translate-y-[0.5rem]' : ''
 						}`}
 					/>
 					<span
-						className={`block w-2 h-0.25 ${lineColor} transition-all duration-300 ${
+						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 ${
 							isNavOpen ? 'opacity-0' : ''
 						}`}
 					/>
 					<span
-						className={`block w-2 h-0.25 ${lineColor} transition-all duration-300 origin-center ${
+						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 origin-center ${
 							isNavOpen ? '-rotate-45 -translate-y-[0.5rem]' : ''
 						}`}
 					/>

@@ -36,7 +36,7 @@ const StickyNav = ({ navLinks, logoUrl }) => {
 
 	// bg-primary/0 at the top or while the nav is hidden off-screen.
 	// bg-primary/50 once it's visible again and you're away from the top.
-	const navBg = !isAtTop && !hidden ? 'bg-primary/90' : 'bg-primary/0';
+	const navBg = !isAtTop && !hidden ? 'bg-primary/60 backdrop-blur' : 'bg-primary/0';
 
 	return (
 		<motion.nav

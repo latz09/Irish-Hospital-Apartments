@@ -10,7 +10,7 @@ import Link from 'next/link';
 import MenuIcon from './MenuIcon';
 import Logo from '../../lib/Logo';
 import { DARK_NAV_ROUTES } from '@/data/config/navigation';
-
+import FooterMark from '@/components/ui/FooterMark';
 const EASE = [0.25, 0.46, 0.45, 0.94];
 const PANEL_ID = 'mobile-nav-panel';
 
@@ -18,15 +18,15 @@ const PANEL_ID = 'mobile-nav-panel';
 // Everything the open panel touches (overlay, panel bg/border, link
 // numbers/text, divider, CTA button) reads from here.
 const PANEL_THEME = {
-	overlay: 'bg-light/75',
-	panelBg: 'bg-light',
+	overlay: 'bg-secondary/25',
+	panelBg: 'bg-dark',
 	panelBorder: 'border-primary/20',
-	linkNumber: 'text-primary',
-	linkText: 'text-dark',
-	linkHover: 'group-hover:text-primary',
+	linkNumber: 'text-secondary',
+	linkText: 'text-light',
+	linkHover: 'group-hover:text-secondary',
 	linkDivider: 'border-light/10',
-	ctaBg: 'bg-primary border border-primary',
-	ctaText: 'text-white',
+	ctaBg: 'bg-light border border-primary',
+	ctaText: 'text-primary ',
 	ctaHover: 'hover:bg-light hover:text-dark',
 };
 
@@ -156,7 +156,7 @@ const MobileNavbar = ({ navLinks = [], logoUrl, navBg = 'bg-primary/0' }) => {
 									id={PANEL_ID}
 									ref={panelRef}
 									tabIndex={-1}
-									className={`fixed top-0 right-0 h-full w-[85%] max-w-[500px] z-modal shadow-lifted border-l overflow-hidden outline-none ${PANEL_THEME.panelBg} ${PANEL_THEME.panelBorder}`}
+									className={`fixed top-0 right-0 h-full w-[95%] max-w-[500px] z-modal shadow-lifted border-l overflow-hidden outline-none ${PANEL_THEME.panelBg} ${PANEL_THEME.panelBorder}`}
 									variants={menuVariants}
 									initial='closed'
 									animate='open'
@@ -167,6 +167,10 @@ const MobileNavbar = ({ navLinks = [], logoUrl, navBg = 'bg-primary/0' }) => {
 									aria-modal='true'
 									aria-label='Mobile navigation menu'
 								>
+									<div className='pointer-events-none absolute bottom-0 left-0 w-[10rem]'>
+										<FooterMark className='text-secondary/10' />
+									</div>
+
 									<div className='relative z-10 flex flex-col h-full px-1 py-1'>
 										<motion.div
 											initial={{ opacity: 0, y: -10 }}
@@ -183,7 +187,7 @@ const MobileNavbar = ({ navLinks = [], logoUrl, navBg = 'bg-primary/0' }) => {
 										</motion.div>
 
 										<motion.ul
-											className='flex-1 space-y-0.5'
+											className='flex-1 space-y-0.5 pt-4'
 											variants={linkContainerVariants}
 											initial='closed'
 											animate='open'
@@ -196,11 +200,11 @@ const MobileNavbar = ({ navLinks = [], logoUrl, navBg = 'bg-primary/0' }) => {
 														className={`group relative flex items-center justify-between py-0.75 border-b ${PANEL_THEME.linkDivider}`}
 													>
 														<span className='flex items-baseline gap-0.75'>
-															<h4
+															<h5
 																className={`${PANEL_THEME.linkNumber} font-[700] tracking-wide`}
 															>
 																{String(index + 1).padStart(2, '0')}
-															</h4>
+															</h5>
 															<h5
 																className={`${PANEL_THEME.linkText} transition-colors duration-300 ${PANEL_THEME.linkHover}`}
 															>
@@ -217,14 +221,14 @@ const MobileNavbar = ({ navLinks = [], logoUrl, navBg = 'bg-primary/0' }) => {
 												initial={{ y: 20, opacity: 0 }}
 												animate={{ y: 0, opacity: 1 }}
 												transition={{ delay: 0.55, duration: 0.45, ease: EASE }}
-												className='pt-xs'
+												className='pt-xs self-end'
 											>
 												<Link
 													href={contactLink.url}
 													onClick={() =>
 														handleNavClick(contactLink.label, contactLink.url)
 													}
-													className={`w-full text-button inline-flex items-center justify-center rounded-sm transition-all duration-500 py-0.75 px-1.25 ${PANEL_THEME.ctaBg} ${PANEL_THEME.ctaText} ${PANEL_THEME.ctaHover}`}
+													className={`w text-button inline-flex items-center justify-center rounded transition-all duration-500 px-1.25 py-[0.62rem]  ${PANEL_THEME.ctaBg} ${PANEL_THEME.ctaText} ${PANEL_THEME.ctaHover}`}
 												>
 													{contactLink.label}
 												</Link>
