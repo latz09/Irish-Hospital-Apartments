@@ -12,7 +12,7 @@ const TopoPattern = ({ className = 'text-secondary/25' }) => {
 			viewBox='0 0 1328 154'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'
-			className={`h-auto w-full ${className}`}
+			className={`h-[154px] w-auto max-w-none md:h-auto md:w-full ${className}`}
 			aria-hidden='true'
 		>
 	

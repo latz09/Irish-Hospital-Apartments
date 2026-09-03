@@ -21,19 +21,19 @@ const MenuIcon = ({ toggleNav, isNavOpen, variant = 'dark', controls }) => {
 				whileHover={{ scale: 1.1 }}
 				whileTap={{ scale: 0.9 }}
 			>
-				<div className='flex flex-col space-y-[0.4rem]'>
+				<div className='flex flex-col space-y-[0.25rem]'>
 					<span
-						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 origin-center ${
+						className={`block w-2 h-[0.25rem] ${lineColor} transition-all duration-300 origin-center ${
 							isNavOpen ? 'rotate-45 translate-y-[0.5rem]' : ''
 						}`}
 					/>
 					<span
-						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 ${
+						className={`block w-2 h-[0.25rem] ${lineColor} transition-all duration-300 ${
 							isNavOpen ? 'opacity-0' : ''
 						}`}
 					/>
 					<span
-						className={`block w-2 h-[0.2rem] ${lineColor} transition-all duration-300 origin-center ${
+						className={`block w-2 h-[0.25rem] ${lineColor} transition-all duration-300 origin-center ${
 							isNavOpen ? '-rotate-45 -translate-y-[0.5rem]' : ''
 						}`}
 					/>

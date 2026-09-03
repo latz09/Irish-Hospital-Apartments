@@ -31,7 +31,9 @@ const About = ({ data }) => {
 					heading={renovationHeading}
 					description={renovationParagraphs}
 				/>
-				<TopoPattern />
+				<div className='w-full overflow-hidden'>
+					<TopoPattern className='text-secondary/25' />
+				</div>
 			</Section>
 		</div>
 	);
