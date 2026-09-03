@@ -16,7 +16,9 @@ const Gallery = ({ data }) => {
 				description={introParagraphs}
 			/>
 			<GalleryMasonry images={images} />
-			<TopoPattern className='text-accent/25' />
+				<div className='w-full overflow-hidden'>
+					<TopoPattern className='text-secondary/25' />
+				</div>
 		</Section>
 	);
 };
