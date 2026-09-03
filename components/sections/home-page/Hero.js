@@ -51,7 +51,7 @@ const Hero = ({ data }) => {
 	const badgeAlt = BADGE_ALT_TEXT[badge] ?? '';
 
 	return (
-		<header className='relative h-[90svh] md:h-[100svh] min-h-[40rem] overflow-hidden'>
+		<header className='relative h-[93svh] md:h-[100svh] min-h-[40rem] overflow-hidden'>
 			{backgroundImage && (
 				<SanityImage
 					image={backgroundImage}
