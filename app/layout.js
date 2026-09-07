@@ -76,7 +76,7 @@ export default async function RootLayout({ children }) {
 				<main>{children}</main>
 				<Analytics />
 				<Footer businessName={seo?.siteName} />
-				<DesignSystemBadge />
+				{/* <DesignSystemBadge /> */}
 			</body>
 		</html>
 	);
