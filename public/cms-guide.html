@@ -1,0 +1,1699 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex, nofollow" />
+		<title>Content Management Guide &mdash; Irish Hospital Apartments</title>
+
+		<!-- ============================================================
+		     LOGO SETTINGS — edit these to change the logo shown at
+		     the top of the guide and in the printed PDF.
+		       LOGO_PATH          — file in /public, e.g.:
+		                            "./images/logos/irish-hospital-apartments-1.png"
+		                            "./images/logos/irish-hospital-apartments-2.png"
+		       LOGO_HEIGHT        — on-screen height, e.g. "48px"
+		       LOGO_PRINT_HEIGHT  — height when printed to PDF, e.g. "36px"
+		       SHOW_HEADER_TITLE  — true shows the "Irish Hospital Apartments"
+		                            text heading below the logo. Set to false
+		                            if the logo already reads clearly on its
+		                            own (some logos are redundant with it,
+		                            some aren't — your call).
+		       USE_SIDEBAR_LOGO   — true replaces the "Irish Hospital
+		                            Apartments" text at the top of the side
+		                            menu with the logo image instead. Use a
+		                            white/light logo here — the sidebar
+		                            background is dark. false keeps the text.
+		       SIDEBAR_LOGO_HEIGHT — logo height in the sidebar, e.g. "28px"
+		     ============================================================ -->
+		<script>
+			var LOGO_PATH = './images/logos/irish-hospital-apartments-1.png';
+			var LOGO_HEIGHT = '82px';
+			var LOGO_PRINT_HEIGHT = '36px';
+			var SHOW_HEADER_TITLE = false;
+			var USE_SIDEBAR_LOGO = true;
+			var SIDEBAR_LOGO_HEIGHT = '28px';
+		</script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--navy: #132e41;
+				--navy-light: #1d425c;
+				--navy-dark: #0c1e2c;
+				--sand: #f6f3ed;
+				--sand-dark: #ece6d9;
+				--sand-deeper: #ddd4bf;
+				--white: #ffffff;
+				--accent: #a94f47;
+				--accent-light: #c2685f;
+				--text: #1a1a1a;
+				--text-muted: #5c6570;
+				--tip-bg: #eef4f0;
+				--tip-border: #3f7a5c;
+				--warn-bg: #fbeeec;
+				--warn-border: #a94f47;
+				--field-bg: #f8f6f1;
+				--radius: 6px;
+				--sidebar-width: 260px;
+			}
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: 'DM Sans', sans-serif;
+				font-size: 16px;
+				line-height: 1.7;
+				color: var(--text);
+				background: var(--sand);
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: var(--sidebar-width);
+				background: var(--navy-dark);
+				position: fixed;
+				top: 0;
+				left: 0;
+				height: 100vh;
+				overflow-y: auto;
+				z-index: 100;
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.3s ease;
+			}
+			.sidebar::-webkit-scrollbar {
+				width: 4px;
+			}
+			.sidebar::-webkit-scrollbar-thumb {
+				background: rgba(255, 255, 255, 0.15);
+				border-radius: 4px;
+			}
+			.sidebar-logo {
+				padding: 28px 24px 20px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.sidebar-logo-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 17px;
+				font-weight: 600;
+				color: var(--sand);
+				line-height: 1.3;
+			}
+			.sidebar-logo-img {
+				display: none;
+				height: var(--sidebar-logo-height, 28px);
+				width: auto;
+			}
+			.sidebar-logo-sub {
+				font-size: 11px;
+				color: rgba(255, 255, 255, 0.35);
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				margin-top: 4px;
+				font-weight: 500;
+			}
+			.sidebar-section {
+				padding: 18px 0 8px;
+			}
+			.sidebar-section-label {
+				font-size: 10px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				color: rgba(255, 255, 255, 0.25);
+				padding: 0 24px;
+				margin-bottom: 4px;
+			}
+			.sidebar-link {
+				display: block;
+				padding: 8px 24px;
+				font-size: 13.5px;
+				font-weight: 400;
+				color: rgba(255, 255, 255, 0.6);
+				text-decoration: none;
+				transition: all 0.15s ease;
+				border-left: 2px solid transparent;
+				line-height: 1.4;
+			}
+			.sidebar-link:hover {
+				color: var(--sand);
+				background: rgba(255, 255, 255, 0.05);
+				border-left-color: rgba(246, 243, 237, 0.3);
+			}
+			.sidebar-link.active {
+				color: var(--sand);
+				background: rgba(255, 255, 255, 0.07);
+				border-left-color: var(--sand);
+				font-weight: 500;
+			}
+			.sidebar-footer {
+				margin-top: auto;
+				padding: 20px 24px;
+				border-top: 1px solid rgba(255, 255, 255, 0.08);
+				font-size: 11.5px;
+				color: rgba(255, 255, 255, 0.3);
+				line-height: 1.5;
+			}
+			.sidebar-footer a {
+				color: rgba(246, 243, 237, 0.5);
+				text-decoration: none;
+			}
+			.sidebar-footer a:hover {
+				color: var(--sand);
+			}
+			.main {
+				margin-left: var(--sidebar-width);
+				flex: 1;
+				min-width: 0;
+			}
+			.page-header {
+				background: var(--navy);
+				padding: 64px 64px 56px;
+				position: relative;
+				overflow: hidden;
+			}
+			.page-header::before {
+				content: '';
+				position: absolute;
+				top: -80px;
+				right: -80px;
+				width: 360px;
+				height: 360px;
+				background: radial-gradient(
+					circle,
+					rgba(246, 243, 237, 0.06) 0%,
+					transparent 70%
+				);
+				pointer-events: none;
+			}
+			.page-header::after {
+				content: '';
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				height: 1px;
+				background: linear-gradient(
+					90deg,
+					transparent,
+					rgba(246, 243, 237, 0.2),
+					transparent
+				);
+			}
+			.header-logo {
+				height: var(--logo-height, 48px);
+				width: auto;
+				margin-bottom: 24px;
+				display: block;
+				opacity: 0.9;
+			}
+			.header-eyebrow {
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.16em;
+				color: rgba(246, 243, 237, 0.45);
+				margin-bottom: 14px;
+			}
+			.page-header.no-title .header-eyebrow {
+				margin-bottom: 20px;
+			}
+			.header-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 52px;
+				font-weight: 600;
+				color: var(--sand);
+				line-height: 1.1;
+				margin-bottom: 16px;
+				letter-spacing: -0.01em;
+			}
+			.header-sub {
+				font-size: 16px;
+				color: rgba(246, 243, 237, 0.6);
+				max-width: 500px;
+				line-height: 1.6;
+				font-weight: 300;
+			}
+			.header-meta {
+				margin-top: 28px;
+				display: flex;
+				gap: 24px;
+				flex-wrap: wrap;
+			}
+			.header-meta-item {
+				font-size: 12.5px;
+				color: rgba(246, 243, 237, 0.4);
+			}
+			.header-meta-item strong {
+				color: rgba(246, 243, 237, 0.7);
+				font-weight: 500;
+			}
+			.print-btn {
+				position: absolute;
+				top: 32px;
+				right: 64px;
+				background: transparent;
+				border: 1px solid rgba(246, 243, 237, 0.35);
+				color: rgba(246, 243, 237, 0.7);
+				font-family: 'DM Sans', sans-serif;
+				font-size: 13px;
+				font-weight: 500;
+				padding: 8px 16px;
+				border-radius: 4px;
+				cursor: pointer;
+				letter-spacing: 0.04em;
+				transition: all 0.15s ease;
+				display: flex;
+				align-items: center;
+				gap: 7px;
+			}
+			.print-btn:hover {
+				background: rgba(246, 243, 237, 0.08);
+				border-color: rgba(246, 243, 237, 0.6);
+				color: var(--sand);
+			}
+			.content {
+				padding: 56px 64px 80px;
+				max-width: 860px;
+			}
+			.doc-section {
+				margin-bottom: 72px;
+				scroll-margin-top: 32px;
+			}
+			.section-heading {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 38px;
+				font-weight: 600;
+				color: var(--navy);
+				letter-spacing: -0.01em;
+				line-height: 1.15;
+				margin-bottom: 8px;
+				padding-bottom: 16px;
+				border-bottom: 2px solid var(--navy);
+			}
+			.section-intro {
+				font-size: 15.5px;
+				color: var(--text-muted);
+				margin-bottom: 32px;
+				max-width: 640px;
+				line-height: 1.7;
+			}
+			.subsection {
+				margin-bottom: 48px;
+				scroll-margin-top: 32px;
+			}
+			.subsection-heading {
+				font-size: 19px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 6px;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+			.subsection-heading::before {
+				content: '';
+				display: inline-block;
+				width: 3px;
+				height: 20px;
+				background: var(--navy);
+				border-radius: 2px;
+				flex-shrink: 0;
+			}
+			.jump-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 12.5px;
+				font-weight: 600;
+				color: var(--accent);
+				text-decoration: none;
+				margin: 4px 0 16px;
+				padding: 3px 0;
+			}
+			.jump-link:hover {
+				color: var(--accent-light);
+			}
+			.field-table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 16px;
+				border-radius: var(--radius);
+				overflow: hidden;
+				border: 1px solid var(--sand-deeper);
+			}
+			.field-table tr:not(:last-child) {
+				border-bottom: 1px solid var(--sand-deeper);
+			}
+			.field-label {
+				background: var(--field-bg);
+				padding: 11px 16px;
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--navy);
+				vertical-align: top;
+				width: 190px;
+				white-space: nowrap;
+				border-right: 1px solid var(--sand-deeper);
+			}
+			.field-desc {
+				padding: 11px 16px;
+				font-size: 14px;
+				color: var(--text);
+				vertical-align: top;
+				background: var(--white);
+				line-height: 1.6;
+			}
+			.field-limit {
+				display: inline-block;
+				margin-top: 4px;
+				font-size: 11.5px;
+				color: var(--text-muted);
+				background: var(--sand);
+				border-radius: 20px;
+				padding: 1px 8px;
+				font-weight: 500;
+			}
+			.callout {
+				border-radius: var(--radius);
+				padding: 14px 18px;
+				margin: 20px 0;
+				font-size: 14px;
+				line-height: 1.65;
+				border-left-width: 3px;
+				border-left-style: solid;
+			}
+			.callout-tip {
+				background: var(--tip-bg);
+				border-left-color: var(--tip-border);
+				color: #205038;
+			}
+			.callout-warn {
+				background: var(--warn-bg);
+				border-left-color: var(--warn-border);
+				color: #7a332c;
+			}
+			.callout-icon {
+				font-size: 15px;
+				margin-right: 6px;
+			}
+			.callout strong {
+				font-weight: 600;
+			}
+			.steps {
+				counter-reset: steps;
+				list-style: none;
+				margin: 16px 0 24px;
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.steps li {
+				counter-increment: steps;
+				display: flex;
+				align-items: flex-start;
+				gap: 14px;
+				font-size: 15px;
+				line-height: 1.6;
+			}
+			.steps li::before {
+				content: counter(steps);
+				flex-shrink: 0;
+				width: 26px;
+				height: 26px;
+				background: var(--navy);
+				color: var(--sand);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				font-weight: 700;
+				margin-top: 1px;
+			}
+			.steps li > * {
+				min-width: 0;
+			}
+			.bullets {
+				list-style: none;
+				margin: 12px 0 20px 0;
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+			.bullets li {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+				font-size: 15px;
+				line-height: 1.6;
+			}
+			.bullets li::before {
+				content: '';
+				flex-shrink: 0;
+				width: 5px;
+				height: 5px;
+				background: var(--navy);
+				border-radius: 50%;
+				margin-top: 9px;
+			}
+			.section-badge {
+				display: inline-flex;
+				align-items: center;
+				background: var(--navy);
+				color: var(--sand);
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				padding: 4px 12px;
+				border-radius: 20px;
+				margin-bottom: 20px;
+			}
+			.doc-p {
+				font-size: 15.5px;
+				line-height: 1.75;
+				color: var(--text);
+				margin-bottom: 16px;
+				max-width: 680px;
+			}
+			strong {
+				font-weight: 600;
+			}
+			a {
+				color: var(--navy);
+				font-weight: 500;
+			}
+			a:hover {
+				color: var(--navy-light);
+			}
+			code {
+				background: var(--sand-dark);
+				padding: 1px 6px;
+				border-radius: 3px;
+				font-family: 'SF Mono', 'Fira Code', monospace;
+				font-size: 13px;
+				color: var(--navy);
+			}
+			.divider {
+				border: none;
+				border-top: 1px solid var(--sand-deeper);
+				margin: 48px 0;
+			}
+			.help-card {
+				background: var(--navy);
+				border-radius: 10px;
+				padding: 36px 40px;
+				color: var(--sand);
+				margin-top: 32px;
+			}
+			.help-card h3 {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 28px;
+				font-weight: 600;
+				margin-bottom: 12px;
+				color: var(--sand);
+			}
+			.help-card p {
+				font-size: 15px;
+				color: rgba(246, 243, 237, 0.7);
+				margin-bottom: 20px;
+				line-height: 1.65;
+			}
+			.help-card a {
+				color: var(--sand);
+				font-weight: 500;
+			}
+			.help-links {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				margin-top: 20px;
+			}
+			.help-link-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				font-size: 15px;
+			}
+			.help-link-label {
+				font-weight: 600;
+				color: rgba(246, 243, 237, 0.5);
+				width: 60px;
+				font-size: 12px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+			}
+			.help-link-item a {
+				color: var(--sand);
+				text-decoration: none;
+				border-bottom: 1px solid rgba(246, 243, 237, 0.3);
+				transition: border-color 0.15s;
+			}
+			.help-link-item a:hover {
+				border-bottom-color: var(--sand);
+			}
+			.help-card-tagline {
+				margin-top: 28px;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				font-style: italic;
+				font-size: 14px;
+				color: rgba(246, 243, 237, 0.4);
+			}
+			.tips-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 14px;
+				margin-top: 24px;
+			}
+			.tip-card {
+				background: var(--white);
+				border: 1px solid var(--sand-deeper);
+				border-radius: var(--radius);
+				padding: 18px 20px;
+				font-size: 14px;
+				line-height: 1.6;
+				color: var(--text);
+			}
+			.tip-card-icon {
+				font-size: 20px;
+				margin-bottom: 8px;
+				display: block;
+			}
+			.tip-card strong {
+				display: block;
+				font-size: 13px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 4px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			.group-heading {
+				font-size: 15px;
+				font-weight: 600;
+				color: var(--navy);
+				margin: 24px 0 12px;
+			}
+			.mobile-toggle {
+				display: none;
+				position: fixed;
+				bottom: 80px;
+				right: 24px;
+				z-index: 200;
+				background: var(--navy);
+				color: var(--sand);
+				border: none;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				font-size: 20px;
+				cursor: pointer;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+				align-items: center;
+				justify-content: center;
+			}
+			.sidebar-overlay {
+				display: none;
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.4);
+				z-index: 99;
+			}
+
+			@media (max-width: 900px) {
+				.sidebar {
+					transform: translateX(-100%);
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.main {
+					margin-left: 0;
+				}
+				.mobile-toggle {
+					display: flex;
+				}
+				.sidebar-overlay.visible {
+					display: block;
+				}
+				.page-header {
+					padding: 40px 28px 56px;
+				}
+				.content {
+					padding: 36px 28px 60px;
+				}
+				.header-title {
+					font-size: 36px;
+				}
+				.tips-grid {
+					grid-template-columns: 1fr;
+				}
+				.print-btn {
+					display: none;
+				}
+			}
+
+			@media (max-width: 600px) {
+				.page-header {
+					padding: 32px 20px 48px;
+				}
+				.content {
+					padding: 28px 20px 60px;
+				}
+				.header-title {
+					font-size: 28px;
+				}
+				.steps li {
+					gap: 10px;
+					align-items: flex-start;
+				}
+				.steps li::before {
+					margin-top: 2px;
+					flex-shrink: 0;
+				}
+				.steps li span,
+				.steps li a,
+				.steps li code {
+					word-break: break-word;
+				}
+				.field-table,
+				.field-table tbody,
+				.field-table tr {
+					display: block;
+				}
+				.field-table tr {
+					margin-bottom: 12px;
+					border: 1px solid var(--sand-deeper);
+					border-radius: var(--radius);
+					overflow: hidden;
+				}
+				.field-table tr:not(:last-child) {
+					border-bottom: 1px solid var(--sand-deeper);
+					margin-bottom: 12px;
+				}
+				.field-label {
+					display: block;
+					width: 100%;
+					border-right: none;
+					border-bottom: 1px solid var(--sand-deeper);
+					white-space: normal;
+					font-size: 12px;
+					padding: 8px 12px;
+				}
+				.field-desc {
+					display: block;
+					width: 100%;
+					padding: 10px 12px;
+					font-size: 13.5px;
+				}
+			}
+
+			@media print {
+				.sidebar,
+				.sidebar-overlay,
+				.mobile-toggle,
+				.print-btn,
+				.jump-link {
+					display: none !important;
+				}
+				.main {
+					margin-left: 0 !important;
+				}
+				body {
+					background: white !important;
+					display: block !important;
+				}
+				@page {
+					margin: 0.75in 0.85in;
+				}
+				.page-header {
+					background: white !important;
+					border-bottom: 2px solid #132e41 !important;
+					padding: 24px 0 20px !important;
+				}
+				.header-logo {
+					filter: brightness(0) saturate(100%) !important;
+					opacity: 1 !important;
+					height: var(--logo-print-height, 36px) !important;
+				}
+				.header-eyebrow {
+					color: #132e41 !important;
+				}
+				.header-title {
+					color: #132e41 !important;
+					font-size: 32px !important;
+				}
+				.header-sub {
+					color: #444 !important;
+				}
+				.header-meta-item {
+					color: #444 !important;
+				}
+				.header-meta-item strong {
+					color: #132e41 !important;
+				}
+				.content {
+					padding: 32px 0 !important;
+					max-width: 100% !important;
+				}
+				.subsection {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.callout {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.field-table {
+					page-break-inside: auto;
+					break-inside: auto;
+				}
+				.field-table tr {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.tip-card {
+					page-break-inside: avoid;
+					break-inside: avoid;
+				}
+				.help-card {
+					page-break-inside: avoid;
+					break-inside: avoid;
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+				.section-heading,
+				.subsection-heading {
+					page-break-after: avoid;
+					break-after: avoid;
+				}
+				.section-badge,
+				.field-label {
+					-webkit-print-color-adjust: exact;
+					print-color-adjust: exact;
+				}
+				.tips-grid {
+					grid-template-columns: 1fr 1fr !important;
+				}
+				a {
+					color: #132e41 !important;
+				}
+				.divider {
+					border-top: 1px solid #ddd4bf !important;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="sidebar" id="sidebar">
+			<div class="sidebar-logo">
+				<div class="sidebar-logo-title" id="sidebar-logo-title">Irish Hospital Apartments</div>
+				<img class="sidebar-logo-img" id="sidebar-logo-img" alt="Irish Hospital Apartments" />
+				<div class="sidebar-logo-sub">CMS Guide</div>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Getting Started</div>
+				<a href="#logging-in" class="sidebar-link">Logging In</a>
+				<a href="#manage-content" class="sidebar-link">How Manage Content Works</a>
+				<a href="#drafts" class="sidebar-link">Drafts vs. Published</a>
+				<a href="#images" class="sidebar-link">Working with Images</a>
+				<a href="#publishing" class="sidebar-link">Publishing</a>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Your Content</div>
+				<a href="#navigation" class="sidebar-link">Navigation</a>
+				<a href="#hero" class="sidebar-link">Hero</a>
+				<a href="#about" class="sidebar-link">About</a>
+				<a href="#amenities" class="sidebar-link">Amenities</a>
+				<a href="#resident-services" class="sidebar-link">Resident Services</a>
+				<a href="#photo-gallery" class="sidebar-link">Photo Gallery</a>
+				<a href="#seo-settings" class="sidebar-link">SEO Settings</a>
+			</div>
+			<div class="sidebar-section">
+				<div class="sidebar-section-label">Other</div>
+				<a href="#quick-tips" class="sidebar-link">Quick Tips</a>
+				<a href="#need-help" class="sidebar-link">Need Help?</a>
+			</div>
+			<div class="sidebar-footer">
+				Powered by
+				<a href="https://latzwebdesign.com" target="_blank">Latz Web Design</a><br />
+				No fluff. Just results.
+			</div>
+		</nav>
+
+		<div class="sidebar-overlay" id="overlay"></div>
+
+		<div class="main">
+			<header class="page-header" id="page-header">
+				<img
+					id="header-logo"
+					alt="Irish Hospital Apartments"
+					class="header-logo"
+					onerror="this.style.display = 'none'"
+				/>
+				<div class="header-eyebrow">Content Management Guide</div>
+				<div class="header-title" id="header-title">Irish Hospital<br />Apartments</div>
+				<div class="header-sub">
+					Everything you need to edit and manage content on your website &mdash;
+					no tech background required.
+				</div>
+				<div class="header-meta">
+					<div class="header-meta-item">
+						<strong>Website:</strong>
+						<a
+							href="https://irishhospitalapartments.com"
+							target="_blank"
+							style="color: rgba(246, 243, 237, 0.6); font-weight: 400"
+							>irishhospitalapartments.com</a
+						>
+					</div>
+					<div class="header-meta-item">
+						<strong>Studio:</strong>
+						<a
+							href="https://irish-hospital-apartments.sanity.studio/structure"
+							target="_blank"
+							style="color: rgba(246, 243, 237, 0.6); font-weight: 400"
+							>irish-hospital-apartments.sanity.studio</a
+						>
+					</div>
+				</div>
+				<button class="print-btn" onclick="window.print()">
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<polyline points="6 9 6 2 18 2 18 9" />
+						<path
+							d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+						/>
+						<rect x="6" y="14" width="12" height="8" />
+					</svg>
+					Print / Save PDF
+				</button>
+			</header>
+
+			<div class="content">
+				<div class="doc-section" id="getting-started">
+					<div class="section-badge">Getting Started</div>
+					<h2 class="section-heading">Getting Started</h2>
+				</div>
+
+				<div class="subsection" id="logging-in">
+					<h3 class="subsection-heading">Logging In</h3>
+					<p class="doc-p">
+						All of your website's content lives in the Studio. To get in:
+					</p>
+					<ol class="steps">
+						<li>
+							<span
+								>Go to your studio URL:
+								<a
+									href="https://irish-hospital-apartments.sanity.studio/structure"
+									target="_blank"
+									>irish-hospital-apartments.sanity.studio/structure</a
+								></span
+							>
+						</li>
+						<li>
+							<span
+								>Log in with the account you were invited with (Google, GitHub,
+								or email/password).</span
+							>
+						</li>
+						<li>
+							<span
+								>You'll land in the
+								<strong>Manage Content</strong> tab &mdash; that's where you'll
+								do everything below.</span
+							>
+						</li>
+					</ol>
+				</div>
+
+				<div class="subsection" id="manage-content">
+					<h3 class="subsection-heading">How Manage Content Works</h3>
+					<p class="doc-p">
+						All editing happens in the <strong>Manage Content</strong> tab. Open
+						a list, pick the item you want to edit (or add a new one), fill in
+						the fields, and publish. That's the whole workflow, whether you're
+						updating the homepage or your site's search settings.
+					</p>
+				</div>
+
+				<div class="subsection" id="drafts">
+					<h3 class="subsection-heading">Drafts vs. Published</h3>
+					<p class="doc-p">
+						Every change you make is saved as a draft automatically. Drafts are
+						<strong>not</strong> visible on the live website &mdash; only you
+						can see them in the studio.
+					</p>
+					<p class="doc-p">
+						To make your changes live, click the <strong>Publish</strong> button
+						at the bottom right of the editor. Changes appear on
+						irishhospitalapartments.com within about a minute.
+					</p>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Don't worry about breaking anything. Your
+						drafts don't affect the live site until you hit Publish. Edit
+						freely, then publish when it looks right.
+					</div>
+				</div>
+
+				<div class="subsection" id="images">
+					<h3 class="subsection-heading">Working with Images</h3>
+					<p class="doc-p">To add or change an image:</p>
+					<ol class="steps">
+						<li><span>Click the image field.</span></li>
+						<li>
+							<span
+								>Click <strong>"Upload"</strong> to select a file from your
+								computer, or drag and drop.</span
+							>
+						</li>
+						<li>
+							<span
+								>Set a <strong>hotspot</strong> by clicking on the image and
+								dragging the circle to the most important part. This ensures the
+								image crops well on all screen sizes.</span
+							>
+						</li>
+					</ol>
+					<ul class="bullets">
+						<li>Use JPG or PNG format.</li>
+						<li>Keep file sizes under 2MB for best performance.</li>
+						<li>The system automatically optimizes images for fast loading.</li>
+					</ul>
+				</div>
+
+				<div class="subsection" id="publishing">
+					<h3 class="subsection-heading">Publishing</h3>
+					<ol class="steps">
+						<li><span>Make your edits.</span></li>
+						<li>
+							<span>Click <strong>"Publish"</strong> at the bottom right.</span>
+						</li>
+						<li>
+							<span
+								>Wait about a minute, then check the live site. If changes don't
+								appear, do a hard refresh: <code>Ctrl+Shift+R</code> on PC or
+								<code>Cmd+Shift+R</code> on Mac.</span
+							>
+						</li>
+					</ol>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> Bookmark your studio URL so you can get back
+						quickly:
+						<a
+							href="https://irish-hospital-apartments.sanity.studio/structure"
+							target="_blank"
+							>irish-hospital-apartments.sanity.studio/structure</a
+						>
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="your-content">
+					<div class="section-badge">Your Content</div>
+					<h2 class="section-heading">Your Content</h2>
+					<p class="section-intro">
+						In <strong>Manage Content</strong>, you'll see three items in the
+						list: <strong>Navigation</strong>, <strong>Home Page</strong>, and
+						<strong>SEO Settings</strong>. The Home Page item opens with tabs
+						across the top &mdash; Hero, About, Amenities, Resident Services,
+						and Photo Gallery &mdash; each covered as its own section below.
+					</p>
+				</div>
+
+				<div class="subsection" id="navigation">
+					<h3 class="subsection-heading">Navigation</h3>
+					<a
+						href="https://irish-hospital-apartments.sanity.studio/structure/navigation"
+						target="_blank"
+						class="jump-link"
+						>&#8594; Jump straight there</a
+					>
+					<p class="doc-p">
+						Controls the links visitors see in the site's menu. Since this is a
+						single scrolling page, each link jumps down to a section rather than
+						loading a new page.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Navigation Links</td>
+							<td class="field-desc">
+								The list of menu items. Each one has a <strong>Label</strong>
+								(the text visitors see) and a link destination and button style
+								that are locked to match the page layout.<br /><span
+									class="field-limit"
+									>Label is the only editable part</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> The URL and "Show as CTA Button" fields are
+						locked &mdash; they're tied to the page structure. Only edit the
+						Label text.
+					</div>
+				</div>
+
+				<div class="doc-section" id="hero">
+					<div class="section-badge">Home Page</div>
+					<h2 class="section-heading">Hero</h2>
+					<a
+						href="https://irish-hospital-apartments.sanity.studio/structure/homePage"
+						target="_blank"
+						class="jump-link"
+						>&#8594; Jump straight there</a
+					>
+					<p class="section-intro">
+						The full-width banner at the very top of the homepage &mdash; the
+						first thing visitors see, with your headline and the two main
+						buttons.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Headline</td>
+							<td class="field-desc">
+								Your main title &mdash; currently "Rooted in History.
+								Reimagined for Today."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Subheadline</td>
+							<td class="field-desc">
+								The line below the headline &mdash; currently "Bright, modern
+								apartments in a historical building in Forest City."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Hero Background Image</td>
+							<td class="field-desc">
+								The large background photo behind the headline. Set the hotspot
+								on the most important part so it crops well on mobile.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Hero Badge</td>
+							<td class="field-desc">
+								Choose "Now Leasing" or "Irish Hospital (Not Leasing)" &mdash;
+								this same choice also controls the small badge shown on the
+								Apply for a Unit card down in Resident Services. Update it here
+								whenever leasing status changes; no other field needs to
+								change.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Primary CTA</td>
+							<td class="field-desc">
+								The "Apply for a Unit" button &mdash; has a Label and a URL that
+								should point to your RentRedi application link.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Secondary CTA</td>
+							<td class="field-desc">
+								The "Pay Rent" button &mdash; has a Label and a URL that should
+								point to your RentRedi payment link.
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> The RentRedi links are already set up
+						correctly. If Kristen's RentRedi account link ever changes, grab
+						the new link from her account and update the URL here (and on the
+						matching card in Resident Services).
+					</div>
+				</div>
+
+				<div class="doc-section" id="about">
+					<div class="section-badge">Home Page</div>
+					<h2 class="section-heading">About</h2>
+					<p class="section-intro">
+						The section that tells the building's story &mdash; its history as
+						the Irish Hospital, and the renovation that turned it into
+						apartments.
+					</p>
+					<div class="group-heading">The History</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section title &mdash; currently "About the Irish Hospital
+								Apartments."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">History Heading</td>
+							<td class="field-desc">
+								Sub-heading above the history text &mdash; currently "The
+								History."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">History Text</td>
+							<td class="field-desc">
+								The building's backstory. Each item you add becomes its own
+								paragraph on the page &mdash; use the "+" button to add another,
+								or remove one you don't need.<br /><span class="field-limit"
+									>At least 1 paragraph</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">History Photo Carousel</td>
+							<td class="field-desc">
+								A scrolling row of historical photos that plays automatically
+								and pauses when a visitor hovers over it.<br /><span
+									class="field-limit"
+									>5&ndash;10 photos</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">The Renovation</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Renovation Heading</td>
+							<td class="field-desc">
+								Sub-heading above the renovation text &mdash; currently "The
+								Renovation."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Renovation Text</td>
+							<td class="field-desc">
+								The story of the renovation itself. Each item is a separate
+								paragraph, same as the History Text above.<br /><span
+									class="field-limit"
+									>At least 1 paragraph</span
+								>
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-warn">
+						<span class="callout-icon">&#9888;&#65039;</span>
+						<strong>Note:</strong> The Renovation Text is currently placeholder
+						copy. Once Kristen sends over the final renovation story, replace it
+						here and publish.
+					</div>
+				</div>
+
+				<div class="doc-section" id="amenities">
+					<div class="section-badge">Home Page</div>
+					<h2 class="section-heading">Amenities</h2>
+					<p class="section-intro">
+						The list of features and finishes that make each unit stand out.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section title &mdash; currently "Amenities."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Intro Text</td>
+							<td class="field-desc">
+								A short line introducing the amenities list.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Amenities List</td>
+							<td class="field-desc">
+								Each line becomes one item in the amenities grid on the page.
+								Add, remove, or reorder freely &mdash; e.g. "Stainless steel
+								appliances," "Quartz countertops."<br /><span
+									class="field-limit"
+									>6&ndash;18 items</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Amenities Photo</td>
+							<td class="field-desc">
+								The photo displayed alongside the amenities list. Set the
+								hotspot on the most important part.
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="doc-section" id="resident-services">
+					<div class="section-badge">Home Page</div>
+					<h2 class="section-heading">Resident Services</h2>
+					<p class="section-intro">
+						Three fixed cards &mdash; Apply for a Unit, Pay Rent, and
+						Maintenance Request. You can't add or remove cards here, but every
+						image, label, and link on each one is editable.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section title &mdash; currently "Resident Services."
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">Apply for a Unit Card</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Image</td>
+							<td class="field-desc">
+								This card also displays the Hero Badge selection (from the Hero
+								section above) as a small overlay &mdash; you don't need to set
+								that here, just the photo.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Title</td>
+							<td class="field-desc">
+								The card's title &mdash; currently "Apply for a Unit."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Button</td>
+							<td class="field-desc">
+								Label and URL for the button &mdash; the URL should point to
+								your RentRedi application link.
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">Pay Rent Card</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Image</td>
+							<td class="field-desc">The photo shown on this card.</td>
+						</tr>
+						<tr>
+							<td class="field-label">Title</td>
+							<td class="field-desc">
+								The card's title &mdash; currently "Pay Rent."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Button</td>
+							<td class="field-desc">
+								Label and URL for the button &mdash; the URL should point to
+								your RentRedi payment link.
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">Maintenance Request Card</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Image</td>
+							<td class="field-desc">The photo shown on this card.</td>
+						</tr>
+						<tr>
+							<td class="field-label">Title</td>
+							<td class="field-desc">
+								The card's title &mdash; currently "Maintenance Request."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Button</td>
+							<td class="field-desc">
+								Label and URL for the button &mdash; the URL should point to
+								your RentRedi maintenance-request link.
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> The Apply, Pay Rent, and Maintenance links are
+						already pulled from your RentRedi account and correct. If any of
+						them ever change, grab the updated link from RentRedi and paste it
+						into the matching Button field here.
+					</div>
+				</div>
+
+				<div class="doc-section" id="photo-gallery">
+					<div class="section-badge">Home Page</div>
+					<h2 class="section-heading">Photo Gallery</h2>
+					<p class="section-intro">
+						A gallery showcasing the units themselves.
+					</p>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Heading</td>
+							<td class="field-desc">
+								The section title &mdash; currently "Photo Gallery."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Subheading</td>
+							<td class="field-desc">
+								A smaller label above the gallery &mdash; currently "Our
+								Units."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Intro Text</td>
+							<td class="field-desc">
+								Text introducing the gallery, describing the mix of unit
+								layouts. Each item is a separate paragraph.<br /><span
+									class="field-limit"
+									>At least 1 paragraph</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Gallery Images</td>
+							<td class="field-desc">
+								The photos shown in the gallery. Add, remove, or reorder as
+								needed.<br /><span class="field-limit">4&ndash;12 photos</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="doc-section" id="seo-settings">
+					<div class="section-badge">SEO Settings</div>
+					<h2 class="section-heading">SEO Settings</h2>
+					<a
+						href="https://irish-hospital-apartments.sanity.studio/structure/seoSettings"
+						target="_blank"
+						class="jump-link"
+						>&#8594; Jump straight there</a
+					>
+					<p class="section-intro">
+						Controls how your site shows up in Google search results and when
+						it's shared on social media. You won't need to touch this often,
+						but it's worth reviewing whenever your business details change.
+					</p>
+					<div class="group-heading">Site Identity</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Site Name</td>
+							<td class="field-desc">
+								Your business name as it appears in the browser tab &mdash;
+								"Irish Hospital Apartments."
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Site URL</td>
+							<td class="field-desc">
+								Your live website address &mdash;
+								https://irishhospitalapartments.com. Only change this if the
+								domain itself changes.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Title Template</td>
+							<td class="field-desc">
+								Controls how page titles are formatted in the browser tab and
+								search results. This is set up correctly &mdash; leave it as
+								is.
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">Search Appearance</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Default Title</td>
+							<td class="field-desc">
+								The main headline Google shows for your homepage.<br /><span
+									class="field-limit"
+									>50&ndash;60 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Default Description</td>
+							<td class="field-desc">
+								The short summary that appears under your title in Google
+								search results.<br /><span class="field-limit"
+									>150&ndash;160 characters</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Keywords</td>
+							<td class="field-desc">
+								Words and phrases that describe your business &mdash; e.g.
+								"apartments Forest City," "historic apartments Iowa."<br /><span
+									class="field-limit"
+									>5&ndash;10 keywords</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Default OG Image</td>
+							<td class="field-desc">
+								The image shown when someone shares your website link on
+								Facebook, Instagram, or in a text message.<br /><span
+									class="field-limit"
+									>1200 &times; 630px</span
+								>
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Twitter / X Handle</td>
+							<td class="field-desc">
+								Your handle on X, including the @. Leave blank if you're not on
+								there.
+							</td>
+						</tr>
+					</table>
+					<div class="group-heading">Business Details</div>
+					<table class="field-table">
+						<tr>
+							<td class="field-label">Schema Type</td>
+							<td class="field-desc">
+								Tells search engines what kind of business you are, so results
+								show the right details. This is set to "LocalBusiness" &mdash;
+								leave it as is.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Phone Number</td>
+							<td class="field-desc">Your business phone number.</td>
+						</tr>
+						<tr>
+							<td class="field-label">Email Address</td>
+							<td class="field-desc">Your business email address.</td>
+						</tr>
+						<tr>
+							<td class="field-label">Address</td>
+							<td class="field-desc">
+								Street, City, State, and ZIP &mdash; currently 216 S. Clark St.,
+								Forest City, IA 50436. Keep this current; it's what shows up in
+								Google Maps and local search results.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Service Areas</td>
+							<td class="field-desc">
+								Cities or areas you serve &mdash; e.g. "Forest City," "Winnebago
+								County." Helps you show up in nearby searches.
+							</td>
+						</tr>
+						<tr>
+							<td class="field-label">Price Range</td>
+							<td class="field-desc">
+								A general price indicator ($ to $$$$) shown in some search
+								results.
+							</td>
+						</tr>
+					</table>
+					<div class="callout callout-tip">
+						<span class="callout-icon">&#128161;</span>
+						<strong>Tip:</strong> If your phone number, email, or address ever
+						changes, update it here so it stays accurate in Google search
+						results &mdash; not just on the page itself.
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="quick-tips">
+					<div class="section-badge">Reference</div>
+					<h2 class="section-heading">Quick Tips</h2>
+					<div class="tips-grid">
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9989;</span
+							><strong>Always publish</strong>Drafts don't show on the live
+							site. Hit Publish when you're done.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#127919;</span
+							><strong>Set hotspots</strong>On every image, so it crops well on
+							phones and desktop alike.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9986;&#65039;</span
+							><strong>Keep text concise</strong>Short, clear messaging
+							converts visitors into leads. Less is more.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128683;</span
+							><strong>Don't leave fields empty</strong>Blank fields can create
+							awkward gaps on the page.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#9201;&#65039;</span
+							><strong>Changes take ~1 minute</strong>After publishing, give it
+							a moment. Hard refresh if needed: <code>Ctrl+Shift+R</code> /
+							<code>Cmd+Shift+R</code>
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128274;</span
+							><strong>Some fields are locked</strong>In Navigation, only the
+							Label is editable &mdash; the link and button style are locked to
+							the page layout.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128260;</span
+							><strong>RentRedi links</strong>All Apply, Pay Rent, and
+							Maintenance links pull from your RentRedi account. If they ever
+							change, update the URL fields on the Hero and Resident Services
+							sections.
+						</div>
+						<div class="tip-card">
+							<span class="tip-card-icon">&#128712;</span
+							><strong>Leasing badge</strong>One toggle on the Hero section
+							controls the leasing badge in two places on the page &mdash; no
+							need to update it twice.
+						</div>
+					</div>
+				</div>
+
+				<hr class="divider" />
+
+				<div class="doc-section" id="need-help">
+					<h2 class="section-heading">Need Help?</h2>
+					<p class="section-intro">
+						If you get stuck or something doesn't look right, reach out
+						directly. No bots, no tickets.
+					</p>
+					<div class="help-card">
+						<h3>You talk to me directly.</h3>
+						<p>
+							If something looks off or you're not sure how to do something,
+							just send me a message. I'll get back to you fast.
+						</p>
+						<div class="help-links">
+							<div class="help-link-item">
+								<span class="help-link-label">Email</span
+								><a href="mailto:jordan@latzwebdesign.com"
+									>jordan@latzwebdesign.com</a
+								>
+							</div>
+							<div class="help-link-item">
+								<span class="help-link-label">Website</span
+								><a href="https://latzwebdesign.com" target="_blank"
+									>latzwebdesign.com</a
+								>
+							</div>
+						</div>
+						<div class="help-card-tagline">
+							Latz Web Design &nbsp;&bull;&nbsp; No fluff. Just results.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+			&#9776;
+		</button>
+
+		<script>
+			document.getElementById('header-logo').src = LOGO_PATH;
+			document.documentElement.style.setProperty('--logo-height', LOGO_HEIGHT);
+			document.documentElement.style.setProperty(
+				'--logo-print-height',
+				LOGO_PRINT_HEIGHT,
+			);
+			if (!SHOW_HEADER_TITLE) {
+				document.getElementById('header-title').style.display = 'none';
+				document.getElementById('page-header').classList.add('no-title');
+			}
+			document.documentElement.style.setProperty(
+				'--sidebar-logo-height',
+				SIDEBAR_LOGO_HEIGHT,
+			);
+			if (USE_SIDEBAR_LOGO) {
+				document.getElementById('sidebar-logo-title').style.display = 'none';
+				var sidebarLogoImg = document.getElementById('sidebar-logo-img');
+				sidebarLogoImg.src = LOGO_PATH;
+				sidebarLogoImg.style.display = 'inline-block';
+			}
+
+			var sidebar = document.getElementById('sidebar');
+			var overlay = document.getElementById('overlay');
+			var toggle = document.getElementById('mobileToggle');
+
+			toggle.addEventListener('click', function () {
+				sidebar.classList.toggle('open');
+				overlay.classList.toggle('visible');
+				toggle.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+			});
+
+			overlay.addEventListener('click', function () {
+				sidebar.classList.remove('open');
+				overlay.classList.remove('visible');
+				toggle.textContent = '☰';
+			});
+
+			var sections = document.querySelectorAll('[id]');
+			var links = document.querySelectorAll('.sidebar-link');
+
+			var observer = new IntersectionObserver(
+				function (entries) {
+					entries.forEach(function (entry) {
+						if (entry.isIntersecting) {
+							var id = entry.target.id;
+							links.forEach(function (link) {
+								link.classList.toggle(
+									'active',
+									link.getAttribute('href') === '#' + id,
+								);
+							});
+						}
+					});
+				},
+				{ rootMargin: '-20% 0px -70% 0px' },
+			);
+
+			sections.forEach(function (s) {
+				observer.observe(s);
+			});
+
+			links.forEach(function (link) {
+				link.addEventListener('click', function () {
+					sidebar.classList.remove('open');
+					overlay.classList.remove('visible');
+					toggle.textContent = '☰';
+				});
+			});
+		</script>
+	</body>
+</html>
