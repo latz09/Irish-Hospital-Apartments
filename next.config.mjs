@@ -10,6 +10,16 @@ const nextConfig = {
 			},
 		],
 	},
+	async redirects() {
+		return [
+			{ source: '/apartment-units', destination: '/', permanent: true },
+			{ source: '/contact', destination: '/', permanent: true },
+			{ source: '/about', destination: '/', permanent: true },
+			{ source: '/application-form', destination: '/', permanent: true },
+			{ source: '/in-the-media', destination: '/', permanent: true },
+			{ source: '/pay-your-rent', destination: '/', permanent: true },
+		];
+	},
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/,
