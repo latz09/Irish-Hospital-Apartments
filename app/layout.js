@@ -6,7 +6,7 @@ import JsonLd from '@/components/seo/JsonLd';
 import NavigationContainer from '@/components/layout/navigation/NavigationContainer';
 import './globals.css';
 import { Jost, Libre_Franklin } from 'next/font/google';
-import DesignSystemBadge from '@/components/design/DesignSystemBadge';
+
 
 // Headings — Jost. Guide uses weight 600 (H1-H4) and weight 500 (H5-H6), no
 // italics anywhere in the guide, so normal style only.
@@ -76,7 +76,7 @@ export default async function RootLayout({ children }) {
 				<main>{children}</main>
 				<Analytics />
 				<Footer businessName={seo?.siteName} />
-				{/* <DesignSystemBadge /> */}
+				
 			</body>
 		</html>
 	);
