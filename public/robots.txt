@@ -5,7 +5,7 @@ Disallow: /opengraph-image.jpg
 Disallow: /page-4
 
 # Host
-Host: https://www.latzwebdesign.com
+Host: https://www.irishhospitalapartments.com/
 
 # Sitemaps
-Sitemap: https://www.latzwebdesign.com/sitemap.xml
+Sitemap: https://www.irishhospitalapartments.com/sitemap.xml
